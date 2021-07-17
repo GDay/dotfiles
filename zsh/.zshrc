@@ -1,5 +1,4 @@
 autoload -U colors && colors
-PS1="%{$fg[green]%}%n%{$reset_color%}@%{$fg[green]%}%m %{$fg[yellow]%}%~ %{$reset_color%}%% "
 
 # tunnel localhost to site
 forward () {
@@ -20,5 +19,22 @@ ext () {
 # i3 laptop only
 lap () {
   xrandr --output eDP --auto
+  xrandr --output eDP --brightness 0.4
   xrandr --output HDMI-0 --off
 }
+
+# Enable vi mode
+bindkey -v
+
+# credits: https://www.themoderncoder.com/add-git-branch-information-to-your-zsh-prompt/
+# Load version control information
+autoload -Uz vcs_info
+precmd() { vcs_info }
+
+# Format the vcs_info_msg_0_ variable
+zstyle ':vcs_info:git:*' formats '%b'
+ 
+# Set up the prompt (with git branch name)
+setopt PROMPT_SUBST
+
+PS1="%{$fg[green]%}%n%{$reset_color%}@%{$fg[green]%}%m %{$fg[yellow]%}%~ %{$reset_color%}% (${vcs_info_msg_0_}) %% "
