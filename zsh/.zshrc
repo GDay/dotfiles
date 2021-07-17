@@ -26,15 +26,12 @@ lap () {
 # Enable vi mode
 bindkey -v
 
-# credits: https://www.themoderncoder.com/add-git-branch-information-to-your-zsh-prompt/
-# Load version control information
 autoload -Uz vcs_info
-precmd() { vcs_info }
-
-# Format the vcs_info_msg_0_ variable
+precmd_vcs_info() { vcs_info }
+precmd_functions+=( precmd_vcs_info )
+setopt prompt_subst
+RPROMPT=\$vcs_info_msg_0_ 
 zstyle ':vcs_info:git:*' formats '%b'
- 
-# Set up the prompt (with git branch name)
-setopt PROMPT_SUBST
 
-PS1="%{$fg[green]%}%n%{$reset_color%}@%{$fg[green]%}%m %{$fg[yellow]%}%~ %{$reset_color%}% (${vcs_info_msg_0_}) %% "
+PS1="%{$fg[green]%}%n%{$reset_color%}@%{$fg[green]%}%m %{$fg[yellow]%}%~ %{$reset_color%}% %% "
+# '%D{%k:%M:%S}'
