@@ -78,9 +78,11 @@ call plug#end()
 let mapleader = " "
 
 " FZF settings
-nnoremap <leader>p :GFiles --cached --others<cr>
+nnoremap <leader>p :GFiles<cr>
 nnoremap <leader>fg :Rg<cr>
 nnoremap <leader>fb :Buffers<cr>
+
+let $FZF_DEFAULT_COMMAND = 'rg -g ""'
 
 " Vim vue
 let g:vim_vue_plugin_load_full_syntax = 1
