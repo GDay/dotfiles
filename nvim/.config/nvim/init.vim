@@ -68,25 +68,19 @@ Plug 'leafOfTree/vim-vue-plugin'
 " Git for vim
 Plug 'tpope/vim-fugitive'
 
-" Telescope
-Plug 'nvim-lua/popup.nvim'
-Plug 'nvim-lua/plenary.nvim'
-Plug 'nvim-telescope/telescope.nvim'
-
-" Telescope Fuzzy search
-Plug 'nvim-telescope/telescope-fzf-native.nvim', { 'do': 'make' }
+" FZF (replacing Telescope for now)
+Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+Plug 'junegunn/fzf.vim'
 
 call plug#end()
 
 " Define leader
 let mapleader = " "
 
-" Find files using Telescope command-line sugar.
-nnoremap <leader>p <cmd>Telescope git_files<cr>
-nnoremap <leader>fg <cmd>Telescope live_grep<cr>
-nnoremap <leader>fb <cmd>Telescope buffers<cr>
-nnoremap <leader>fh <cmd>Telescope help_tags<cr>
-
+" FZF settings
+nnoremap <leader>p :GFiles --cached --others<cr>
+nnoremap <leader>fg :Rg<cr>
+nnoremap <leader>fb :Buffers<cr>
 
 " Vim vue
 let g:vim_vue_plugin_load_full_syntax = 1
@@ -98,6 +92,4 @@ autocmd BufRead,BufNewFile *.js,*.ts,*.vue,*.css,*.html setlocal tabstop=2 softt
 lua << EOF
 require'lspconfig'.pyright.setup{}
 require'lspconfig'.vuels.setup{}
-
-require('telescope').load_extension('fzf')
 EOF
