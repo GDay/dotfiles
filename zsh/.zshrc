@@ -9,7 +9,10 @@ forward () {
 docker_stop () {
   docker stop $(docker ps -a -q)
 }
-
+# delete all containers
+docker_delete () {
+  docker rm -f $(docker ps -a -q)
+}
 # i3 external screen
 ext () {
   xrandr --output HDMI-0 --auto
