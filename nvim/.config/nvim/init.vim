@@ -90,6 +90,9 @@ let g:vim_vue_plugin_load_full_syntax = 1
 " Setting tabs to 2 for javascript/html/css files
 autocmd BufRead,BufNewFile *.js,*.ts,*.vue,*.css,*.html setlocal tabstop=2 softtabstop=2 shiftwidth=2
 
+" Automatically remove trailing spaces
+autocmd BufWritePre *.js,*.ts,*.vue,*.css,*.html,*.py,*.txt %s/\s\+$//e
+
 " LSP languages setup and remap for file search
 lua << EOF
 require'lspconfig'.pyright.setup{}
