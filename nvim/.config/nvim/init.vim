@@ -77,6 +77,10 @@ call plug#end()
 " Define leader
 let mapleader = " "
 
+
+" Indent file
+nmap <leader>r gg=G
+
 " FZF settings
 nnoremap <leader>p :GFiles<cr>
 nnoremap <leader>fg :Rg<cr>
