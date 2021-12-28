@@ -60,6 +60,12 @@ call plug#end()
 " Define leader
 let mapleader = " "
 
+" Highlight whatever was copied
+augroup highlight_yank
+    autocmd!
+    au TextYankPost * silent! lua vim.highlight.on_yank{higroup="IncSearch", timeout=200}
+augroup END
+
 " Indent file
 nmap <leader>r gg=G
 
@@ -70,6 +76,8 @@ nnoremap Y y$
 nnoremap <leader>p :GFiles<cr>
 nnoremap <leader>fg :Rg<cr>
 nnoremap <leader>fb :Buffers<cr>
+nnoremap <leader>fw :Rg <C-R><C-w><CR>
+nnoremap <leader>ff :call fzf#vim#gitfiles('', {'options':'--query '.expand('<cWORD>')})<CR>
 
 " LSP shortcuts
 nnoremap <leader>gd :lua vim.lsp.buf.definition()<cr>
