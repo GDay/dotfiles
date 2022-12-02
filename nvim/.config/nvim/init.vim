@@ -95,6 +95,9 @@ autocmd BufRead,BufNewFile *.js,*.ts,*.vue,*.css,*.html setlocal tabstop=2 softt
 " Automatically remove trailing spaces
 autocmd BufWritePre *.js,*.ts,*.vue,*.css,*.html,*.py,*.txt %s/\s\+$//e
 
+" Adding autocomplete for HTML
+autocmd FileType html set omnifunc=htmlcomplete#CompleteTags
+
 " Center next instances when searching
 nnoremap n nzzzv
 nnoremap N Nzzzv

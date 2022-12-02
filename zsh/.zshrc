@@ -1,10 +1,5 @@
 autoload -U colors && colors
 
-# tunnel localhost to site
-forward () {
-  ssh -R 8888:localhost:$1 root@site.stantriepels.com
-}
-
 # stop all docker containers
 docker_stop () {
   docker stop $(docker ps -a -q)
@@ -17,6 +12,7 @@ docker_delete () {
 ext () {
   xrandr --output HDMI-0 --auto
   xrandr --output eDP --off
+  xrandr --output HDMI-0 --set TearFree on
 }
 
 # i3 laptop only
@@ -24,6 +20,7 @@ lap () {
   xrandr --output eDP --auto
   xrandr --output eDP --brightness 0.4
   xrandr --output HDMI-0 --off
+  xrandr --output eDP --set TearFree on
 }
 
 # Enable vi mode
