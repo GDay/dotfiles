@@ -27,3 +27,5 @@ unset rc
 export PATH="$PATH:/opt/nvim-linux64/bin"
 
 export PATH=~/.npm-global/bin:$PATH
+
+export GPG_TTY=$(tty)
