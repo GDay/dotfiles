@@ -45,11 +45,10 @@ vim.opt.signcolumn = 'yes'
 vim.opt.updatetime = 250
 
 -- Set indentation to 2 spaces
--- augroup('setIndent', { clear = true })
 local setIndent = vim.api.nvim_create_augroup('Set indent', { clear = true })
 vim.api.nvim_create_autocmd('Filetype', {
   group = setIndent,
-  pattern = { 'css', 'html', 'javascript',
+  pattern = { 'css', 'html', 'javascript', 'js',
     'lua', 'markdown', 'md', 'typescript',
     'scss', 'xml', 'xhtml', 'yaml', 'vue'
   },

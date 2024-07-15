@@ -36,7 +36,7 @@ output * bg /usr/share/backgrounds/default.png fill
 # Example configuration:
 #
 output DP-2 resolution 2560x1440 position 0,0
-output Virtual-1 resolution 2560x1080 position 0,0
+output Virtual-1 resolution 2048x1152 position 0,0
 #
 # You can get the names of your outputs by running: swaymsg -t get_outputs
 
@@ -232,9 +232,9 @@ include '$(/usr/libexec/sway/layered-include "/usr/share/sway/config.d/*.conf" "
 bindsym $mod+m output "DP-2" enable ; output "eDP-1" disable
 bindsym $mod+l output "eDP-1" enable ; output "DP-2" disable
 
-set $mode_system System (l) lock, (e) logout, (s) suspend, (h) hibernate, (r) reboot, (p) shutdown
+set $mode_system System (e) logout, (s) suspend, (h) hibernate, (r) reboot, (p) shutdown
 mode "$mode_system" {
-    bindsym l exec --no-startup-id i3lock, mode "default"
+    # bindsym l exec --no-startup-id i3lock, mode "default"
     bindsym e exec --no-startup-id i3-msg exit, mode "default"
     bindsym s exec --no-startup-id systemctl suspend, mode "default"
     bindsym h exec --no-startup-id systemctl hibernate, mode "default"
@@ -246,3 +246,7 @@ mode "$mode_system" {
     bindsym Escape mode "default"
 }
 bindsym $mod+s mode "$mode_system"
+
+# grimshot
+bindsym Mod4+p       exec grimshot --notify copy active
+bindsym Mod4+Shift+p exec grimshot --notify copy area
